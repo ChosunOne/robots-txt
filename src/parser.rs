@@ -77,7 +77,6 @@ impl RobotsTxt {
 
             // Skip empty lines
             if line.is_empty() {
-                current_agents.clear();
                 continue;
             }
 
@@ -88,6 +87,7 @@ impl RobotsTxt {
 
                 match directive.as_str() {
                     "user-agent" => {
+                        current_agents.clear();
                         // Start new user-agent group
                         let agent = value.to_lowercase();
                         if !rules.contains_key(&agent) {
