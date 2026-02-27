@@ -89,7 +89,7 @@ impl RobotsTxt {
 
                 match directive.as_str() {
                     "user-agent" => {
-                        if &last_directive != "user-agent" {
+                        if &last_directive != "user-agent" && !last_directive.is_empty() {
                             current_agents.clear();
                         }
                         // Start new user-agent group
