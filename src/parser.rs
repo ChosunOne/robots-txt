@@ -63,6 +63,7 @@ impl RobotsTxt {
         let mut rules: HashMap<String, RobotRule> = HashMap::new();
         let mut sitemaps = Vec::new();
         let mut comments = Vec::new();
+        let mut last_directive = String::new();
 
         let mut current_agents: Vec<String> = Vec::new();
 
@@ -84,10 +85,13 @@ impl RobotsTxt {
             if let Some((directive, value)) = line.split_once(':') {
                 let directive = directive.trim().to_lowercase();
                 let value = value.trim().to_string();
+                last_directive = directive.clone();
 
                 match directive.as_str() {
                     "user-agent" => {
-                        current_agents.clear();
+                        if &last_directive != "user-agent" {
+                            current_agents.clear();
+                        }
                         // Start new user-agent group
                         let agent = value.to_lowercase();
                         if !rules.contains_key(&agent) {
