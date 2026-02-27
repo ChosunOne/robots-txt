@@ -85,7 +85,6 @@ impl RobotsTxt {
             if let Some((directive, value)) = line.split_once(':') {
                 let directive = directive.trim().to_lowercase();
                 let value = value.trim().to_string();
-                last_directive = directive.clone();
 
                 match directive.as_str() {
                     "user-agent" => {
@@ -131,6 +130,7 @@ impl RobotsTxt {
                         // Unknown directive, could log or ignore
                     }
                 }
+                last_directive = directive.clone();
             }
         }
 
