@@ -77,6 +77,7 @@ impl RobotsTxt {
 
             // Skip empty lines
             if line.is_empty() {
+                current_agents.clear();
                 continue;
             }
 
